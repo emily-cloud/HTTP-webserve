@@ -16,19 +16,24 @@ Here is a view of the actual website served by **webserv**:
 
 ## Quick Start
 
-1. **Build**
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/emily-cloud/HTTP-webserve.git
+   cd HTTP-webserve
+
+2. **Build**
    ```bash
    make
    ```
    The default target compiles `webserv` and immediately runs the pytest suite (see `Makefile`).
 
-2. **Run with the default configuration**
+3. **Run with the default configuration**
    ```bash
    ./webserv config/default.conf
    ```
    Omit the argument to fall back to `Constants::default_config_file` (currently `config/default.conf`).
 
-3. **Helper targets**
+4. **Helper targets**
    - `make run` – build then start the server with `config/default.conf`
    - `make valrun` – run the server under Valgrind with strict leak checks
    - `make clean | make fclean | make re` – housekeeping targets
