@@ -18,8 +18,8 @@ Here is a view of the actual website served by **webserv**:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/emily-cloud/HTTP-webserve.git
-   cd HTTP-webserve
+   git clone https://github.com/emily-cloud/HTTP-webserv.git
+   cd HTTP-webserv
 
 2. **Build**
    ```bash
