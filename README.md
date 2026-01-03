@@ -47,86 +47,6 @@ A C++98 HTTP/1.1 server that serves static assets, runs CGI programs, and expose
 
 Static HTML lives under `html/www1/`, `html/www2/`, and `html/www3/`, with dedicated assets for cookies, documentation, denial pages, and sample uploads. Uploads land in `html/www1/upload/` by default; `file_upload on` is required for both POST uploads and DELETE clean-up.
 
-## Demo Preview
-
-Here is a view of the actual website served by **webserv**:
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.27.31.png" alt="Home Page" width="75%">
-</p>
-
----
-
-
-### Upload Demo
-
-Upload page:
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.27.41.png" alt="Upload Page" width="75%">
-</p>
-
-After a file has been uploaded:
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.28.03.png" alt="Upload Result" width="75%">
-</p>
-
-### CGI Demo
-
-The CGI scripts reside in `html/www1/cgi-bin/`. The server injects the CGI/1.1 variables (`PATH_INFO`, `QUERY_STRING`, `CONTENT_LENGTH`, etc.) and enforces execution timeouts (`Constants::cgi_child_timeout`).
-
-Example CGI response:
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.28.13.png" alt="CGI Output" width="75%">
-</p>
-
-Example invocations:
-
-```bash
-curl http://localhost:4244/cgi/hello.py
-curl -X POST -F "text_field=demo" -F "file_upload=@tests/report.txt" http://localhost:4244/cgi/hello.py
-curl http://localhost:4244/cgi/hello.pl
-```
-
----
-
-## Custom Error Pages & Redirects
-
-Map status codes to HTML templates and define `return 3xx` directives per location.
-
-Redirect example:
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.28.27.png" alt="Redirect Demo" width="75%">
-</p>
-
-Coffee / tea demo:
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.28.36.png" alt="Coffee Demo" width="75%">
-</p>
-
-Custom `418 I'm a teapot` page:
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.28.41.png" alt="Teapot Error" width="75%">
-</p>
-
----
-
-## Cookie & JSON Helpers
-
-Sample endpoint `/api/update-cookie/...` demonstrates authoring multiple `Set-Cookie` headers and JSON responses, and the sample cookie demo page shows a simple interactive counter.
-
-Cookie demo:
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.28.50.png" alt="Cookie Demo" width="75%">
-</p>
-
----
 
 ## Project Layout
 
@@ -244,6 +164,88 @@ Fixtures in `tests/integration/conftest.py` manage server lifecycles for:
 - **Config fails to load**: The parser is strict about semicolons, block braces, and mandatory directives; check stderr for precise hints.
 - **404s on uploads**: Ensure the target `location` enables `file_upload on` and that you are writing inside the configured `root`.
 - **CGI timeout (504)**: Long-running scripts (see `cgi/endlessloop.py`) are terminated after `Constants::cgi_child_timeout` seconds.
+
+---
+
+
+## Demo Preview
+
+Here is a view of the actual website served by **webserv**:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.27.31.png" alt="Home Page" width="75%">
+</p>
+
+---
+
+
+### Upload Demo
+
+Upload page:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.27.41.png" alt="Upload Page" width="75%">
+</p>
+
+After a file has been uploaded:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.28.03.png" alt="Upload Result" width="75%">
+</p>
+
+### CGI Demo
+
+The CGI scripts reside in `html/www1/cgi-bin/`. The server injects the CGI/1.1 variables (`PATH_INFO`, `QUERY_STRING`, `CONTENT_LENGTH`, etc.) and enforces execution timeouts (`Constants::cgi_child_timeout`).
+
+Example CGI response:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.28.13.png" alt="CGI Output" width="75%">
+</p>
+
+Example invocations:
+
+```bash
+curl http://localhost:4244/cgi/hello.py
+curl -X POST -F "text_field=demo" -F "file_upload=@tests/report.txt" http://localhost:4244/cgi/hello.py
+curl http://localhost:4244/cgi/hello.pl
+```
+
+---
+
+## Custom Error Pages & Redirects
+
+Map status codes to HTML templates and define `return 3xx` directives per location.
+
+Redirect example:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.28.27.png" alt="Redirect Demo" width="75%">
+</p>
+
+Coffee / tea demo:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.28.36.png" alt="Coffee Demo" width="75%">
+</p>
+
+Custom `418 I'm a teapot` page:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.28.41.png" alt="Teapot Error" width="75%">
+</p>
+
+---
+
+## Cookie & JSON Helpers
+
+Sample endpoint `/api/update-cookie/...` demonstrates authoring multiple `Set-Cookie` headers and JSON responses, and the sample cookie demo page shows a simple interactive counter.
+
+Cookie demo:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.28.50.png" alt="Cookie Demo" width="75%">
+</p>
 
 ---
 
