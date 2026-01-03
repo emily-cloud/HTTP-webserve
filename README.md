@@ -4,15 +4,6 @@ A C++98 HTTP/1.1 server that serves static assets, runs CGI programs, and expose
 
 ---
 
-## Demo Preview
-
-Here is a view of the actual website served by **webserv**:
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.27.31.png" alt="Home Page" width="75%">
-</p>
-
----
 
 ## Quick Start
 
@@ -55,6 +46,17 @@ Here is a view of the actual website served by **webserv**:
 ## Static Assets, Uploads, and CGI
 
 Static HTML lives under `html/www1/`, `html/www2/`, and `html/www3/`, with dedicated assets for cookies, documentation, denial pages, and sample uploads. Uploads land in `html/www1/upload/` by default; `file_upload on` is required for both POST uploads and DELETE clean-up.
+
+## Demo Preview
+
+Here is a view of the actual website served by **webserv**:
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/emily-cloud/HTTP-webserve/main/images/Screenshot%202025-12-31%20at%2011.27.31.png" alt="Home Page" width="75%">
+</p>
+
+---
+
 
 ### Upload Demo
 
